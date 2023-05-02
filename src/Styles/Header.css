@@ -1,0 +1,16 @@
+.header {
+    background-image: linear-gradient(to right, rgb(86, 8, 86), rgb(240, 105, 240));
+    display: flex;
+    color: #ffff;  
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.header-title {
+    padding-left: 10px;
+    margin-right: auto;
+}
+
+.header-name {
+    font-size: .75rem; 
+}
