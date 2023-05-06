@@ -1,13 +1,24 @@
-import React, {useState} from "react"
+import React from "react"
 import "../Styles/Form.css"
+const memesData = require("../memesData.json")
 
 export default function Form() {
-    const [memeImage, setMemeImage] = useState('');
+    const [meme, setMeme] = React.useState({
+        topText: "",
+        bottomText: "", 
+        randomImage: "http://i.imgflip.com/1bij.jpg"
+    })
 
-    function randomMeme() {
-        let memesArray = require("../memesData.json").data.memes,
-            randomNumber = Math.floor(Math.random()*memesArray.length)
-            setMemeImage(memesArray[randomNumber].url); 
+    const [allMemeImages, setAllMemeImages] = React.useState(memesData)
+
+    function getRandomMeme() {
+        const memesArray = allMemeImages.data.memes
+        const randomNumber = Math.floor(Math.random() * memesArray.length)
+        const url = memesArray[randomNumber].url
+        setMeme(prevMeme => ({
+            ...prevMeme, 
+            randomImage: url            
+        }))
     }
 
     return (
@@ -26,7 +37,7 @@ export default function Form() {
                     /> 
                 </div>
                 <button 
-                    onClick = {randomMeme}
+                    onClick = {getRandomMeme}
                     className="new-meme-button" 
                     type="submit"
                 >
@@ -35,7 +46,7 @@ export default function Form() {
             </div>
             <img 
                 className="meme-image"
-                src={memeImage} 
+                src={meme.randomImage} 
             />
         </main>
     )
