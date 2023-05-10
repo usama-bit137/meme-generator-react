@@ -20,6 +20,16 @@ export default function Form() {
             randomImage: url            
         }))
     }
+    
+    function handleData(event) {
+        const {name, value} = event.target
+        setMeme( prevFormData => {
+            return {
+                ...prevFormData, 
+                [name]:value
+            }
+        })
+    }
 
     return (
         <main>
@@ -27,27 +37,33 @@ export default function Form() {
                 <div className="input-container">
                     <input 
                         type="text"
+                        name="topText"
                         className="input" 
-                        placeholder="top text"
+                        placeholder="ONE DOES NOT SIMPLY"
+                        value={meme.topText}
+                        onChange={handleData}
                     /> 
                     <input 
                         type="text"
+                        name="bottomText"
                         className="input"  
-                        placeholder="bottom text" 
+                        placeholder="WALK INTO MORDOR"
+                        value={meme.bottomText}
+                        onChange={handleData} 
                     /> 
                 </div>
                 <button 
-                    onClick = {getRandomMeme}
-                    className="new-meme-button" 
-                    type="submit"
+                    onClick = {getRandomMeme} 
+                    className="new-meme-button"
                 >
                     Get a new meme image
                 </button>
             </div>
-            <img 
-                className="meme-image"
-                src={meme.randomImage} 
-            />
+            <div className="meme">
+                <img className="meme--image" src={meme.randomImage} />
+                <h2 className="meme--text top">{meme.topText}</h2>
+                <h2 className="meme--text bottom">{meme.bottomText}</h2>
+            </div>
         </main>
     )
 }
