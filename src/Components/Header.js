@@ -1,6 +1,7 @@
 import React from "react"
 import "../Styles/Header.css"
 import icon from "../Icons/notbad.png"
+
 export default function Header() {
     return (
         <header className="header">
